@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Upload Your Resume</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='styles.css') }}">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <h1>Upload Your Resume</h1>
+        <form class="upload-form" method="post" enctype="multipart/form-data">
+            <label for="file" class="custom-file-upload">
+                <span>Choose File</span>
+            </label>
+            <input type="file" name="file" id="file" accept=".pdf" class="inputfile" />
+            <button type="submit">Upload</button>
+        </form>
+        {% if name %}
+        <div class="result">
+            <h2 class="result-heading">Resume Information</h2>
+            <div class="info">
+                <p><strong>Name:</strong> {{ name }}</p>
+                <p><strong>Emails:</strong></p>
+                <ul>
+                    {% for email in emails %}
+                    <li>{{ email }}</li>
+                    {% endfor %}
+                </ul>
+                <p><strong>Phone Numbers:</strong></p>
+                <ul>
+                    {% for phone_number in phone_numbers %}
+                    <li>{{ phone_number }}</li>
+                    {% endfor %}
+                </ul>
+                <p><strong>Skills:</strong></p>
+                <ul>
+                    {% for skill in skills %}
+                    <li>{{ skill }}</li>
+                    {% endfor %}
+                </ul>
+            </div>
+        </div>
+        {% endif %}
+    </div>
+</body>
+</html>
